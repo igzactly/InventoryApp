@@ -17,6 +17,21 @@
         android:layout_gravity="center"
         android:layout_marginBottom="16dp"/>
 
+    <!-- Filter Dropdown -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Filter by Type"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="4dp"/>
+
+    <Spinner
+        android:id="@+id/spinnerFilter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"/>
+
     <!-- Input Fields for New Inventory Item -->
     <EditText
         android:id="@+id/etItemName"
@@ -45,6 +60,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Add Item"
+        android:layout_gravity="center"
         android:layout_marginBottom="16dp"/>
 
     <!-- RecyclerView for Displaying Items -->

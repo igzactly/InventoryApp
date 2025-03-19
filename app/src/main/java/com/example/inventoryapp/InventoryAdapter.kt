@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.Switch
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
@@ -19,6 +20,7 @@ class InventoryAdapter(
         val tvItemQuantity: TextView = view.findViewById(R.id.tvItemQuantity)
         val btnUpdate: Button = view.findViewById(R.id.btnUpdate)
         val btnDelete: Button = view.findViewById(R.id.btnDelete)
+        val switchEnableUpdate: Switch = view.findViewById(R.id.switchEnableUpdate)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -33,8 +35,23 @@ class InventoryAdapter(
         holder.tvItemType.text = item.type
         holder.tvItemQuantity.text = "Qty: ${item.quantity}"
 
-        holder.btnUpdate.setOnClickListener { onUpdateClick(item) }
-        holder.btnDelete.setOnClickListener { onDeleteClick(item) }
+        // Disable update button by default
+        holder.btnUpdate.isEnabled = false
+
+        // Toggle update button when switch is toggled
+        holder.switchEnableUpdate.setOnCheckedChangeListener { _, isChecked ->
+            holder.btnUpdate.isEnabled = isChecked
+        }
+
+        holder.btnUpdate.setOnClickListener {
+            if (holder.btnUpdate.isEnabled) {
+                onUpdateClick(item)
+            }
+        }
+
+        holder.btnDelete.setOnClickListener {
+            onDeleteClick(item)
+        }
     }
 
     override fun getItemCount() = itemList.size
